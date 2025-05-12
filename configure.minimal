@@ -1,0 +1,11 @@
+#!/bin/sh
+
+if [ $# -gt 0 ]; then
+    cat <<EOF
+This is an autotools-skeumorphic wrapper around CMake. To make changes to your
+project, run `ccmake $(dirname "$0")/build` to launch the CMake Curses TUI, run
+the CMake GUI or your IDE of choice's CMake integration.
+EOF
+else
+    cmake -S "$(dirname "$0")" -B "$(dirname "$0")"/build
+fi
