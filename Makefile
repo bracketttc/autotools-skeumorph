@@ -4,9 +4,10 @@
 
 SOURCE_DIR := $(dir $(realpath $(lastword $(MAKEFILE_LIST))))
 BUILD_DIR := $(SOURCE_DIR)/build
+CONFIGURED := $(BUILD_DIR)/CMakeFiles
 
-all: $(BUILD_DIR)/CMakeCache.txt
-	@cmake --build "$(BUILD_DIR)"
+all: $(CONFIGURED)
+	@&& cmake --build "$(BUILD_DIR)"
 
 dist-clean:
 	@rm -rf "$(BUILD_DIR)"
@@ -19,9 +20,9 @@ CMakeLists.txt:
 	@exit 1
 
 # Configure the project
-build/CMakeFiles: CMakeLists.txt
+$(CONFIGURED): CMakeLists.txt
 	@$(SOURCE_DIR)/configure
 
 # Pass any unrecognized targets on to the generated build system
-%: build/CMakeFiles
+%: $(CONFIGURED)
 	@cmake --build "$(BUILD_DIR)" --target "$@"
