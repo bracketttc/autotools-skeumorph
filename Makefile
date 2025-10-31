@@ -7,7 +7,7 @@ BUILD_DIR := $(SOURCE_DIR)/build
 CONFIGURED := $(BUILD_DIR)/CMakeFiles
 
 all: $(CONFIGURED)
-	@&& cmake --build "$(BUILD_DIR)"
+	@cmake --build "$(BUILD_DIR)"
 
 dist-clean:
 	@rm -rf "$(BUILD_DIR)"
