@@ -24,5 +24,5 @@ $(CONFIGURED): CMakeLists.txt
 	@$(SOURCE_DIR)/configure
 
 # Pass any unrecognized targets on to the generated build system
-%: $(CONFIGURED)
+.DEFAULT: $(CONFIGURED)
 	@cmake --build "$(BUILD_DIR)" --target "$@"
